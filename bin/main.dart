@@ -10,5 +10,23 @@
 // The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7].
 // In this case, the max area of water (blue section) the container can contain is 49.
 
+int maxArea(List containers){
+  List area=[];
+  for(int i=1;i<containers.length;i++){
+    for(int j=0;j<i;j++){
+      if(containers[j]<containers[i]){
+        area.add(containers[j]*(i-j));
+      }else{
+        area.add(containers[i]*(i-j));
+      }
+    }
+  }
+  return area.reduce((curr, next) => curr > next? curr: next);
+}
+
+///----------------------------------
 main() {
+  print(maxArea([1,8,6,2,5,4,8,3,7]));
+  print(maxArea([4,8,6,7,6,5]));
+
 }
